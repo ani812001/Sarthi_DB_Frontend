@@ -1,11 +1,14 @@
+# Saarthi Data Management UI
 
-  # Sarthi Data Management UI
+Frontend built with React + Vite + Tailwind
 
-  This is a code bundle for Sarthi Data Management UI. The original project is available at https://www.figma.com/design/BlRNLU4yZr6dBjosBWK5U1/Sarthi-Data-Management-UI.
+## Features
+- Authentication UI
+- Dashboard
+- Data Management
+- Reports
 
-  ## Running the code
+## Run Locally
 
-  Run `npm i` to install the dependencies.
-
-  Run `npm run dev` to start the development server.
-  
+npm install  
+npm run dev
