@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 import {
   Building,
   GraduationCap,
   Database,
   Activity,
-  Calendar
+  Calendar,
+  X
 } from "lucide-react";
 
 import {
@@ -24,25 +27,57 @@ const kpiData = [
     label: "Total Companies",
     value: "2,847",
     change: "+12.5%",
-    icon: Building
+    icon: Building,
+    details: [
+      "TCS",
+      "Infosys",
+      "Wipro",
+      "Capgemini",
+      "Accenture",
+      "Tech Mahindra"
+    ]
   },
   {
     label: "Total Institutes",
     value: "1,923",
     change: "+8.3%",
-    icon: GraduationCap
+    icon: GraduationCap,
+    details: [
+      "IIT Bombay",
+      "VJTI",
+      "COEP",
+      "SPIT",
+      "DY Patil",
+      "NMIMS"
+    ]
   },
   {
     label: "Data Uploaded",
     value: "50.2M",
     change: "+25.1%",
-    icon: Database
+    icon: Database,
+    details: [
+      "Student Records",
+      "Company Records",
+      "Placement Data",
+      "Attendance Data",
+      "Faculty Data",
+      "Research Data"
+    ]
   },
   {
     label: "API Fetch Count",
     value: "128.5K",
     change: "+18.7%",
-    icon: Activity
+    icon: Activity,
+    details: [
+      "User API",
+      "Company API",
+      "Institute API",
+      "Reports API",
+      "Dashboard API",
+      "Analytics API"
+    ]
   }
 ];
 
@@ -90,6 +125,8 @@ const COLORS = [
 
 export default function Dashboard() {
 
+  const [selectedCard, setSelectedCard] = useState(null);
+
   return (
 
     <div className="min-h-screen bg-[#f8f9fc] dark:bg-[#020817] p-6">
@@ -124,7 +161,8 @@ export default function Dashboard() {
 
               <div
                 key={i}
-                className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm hover:shadow-md transition cursor-pointer"
+                onClick={() => setSelectedCard(item)}
+                className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm hover:shadow-lg hover:scale-[1.02] transition cursor-pointer"
               >
 
                 <div className="flex justify-between mb-4">
@@ -155,6 +193,77 @@ export default function Dashboard() {
           })}
 
         </div>
+
+        {/* Popup Modal */}
+        {selectedCard && (
+
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+
+            <div className="bg-white dark:bg-[#0f172a] rounded-2xl w-full max-w-lg shadow-2xl border border-gray-200 dark:border-gray-800">
+
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 px-6 py-4">
+
+                <div>
+
+                  <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
+                    {selectedCard.label}
+                  </h2>
+
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    Total Count: {selectedCard.value}
+                  </p>
+
+                </div>
+
+                <button
+                  onClick={() => setSelectedCard(null)}
+                  className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1e293b] transition"
+                >
+
+                  <X className="w-5 h-5 text-gray-500" />
+
+                </button>
+
+              </div>
+
+              {/* Body */}
+              <div className="p-6">
+
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-4">
+                  Related Data
+                </h3>
+
+                <div className="space-y-3">
+
+                  {selectedCard.details.map((detail, index) => (
+
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-[#020817] border border-gray-100 dark:border-gray-800"
+                    >
+
+                      <span className="text-sm text-gray-700 dark:text-gray-300">
+                        {detail}
+                      </span>
+
+                      <span className="text-xs bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300 px-2 py-1 rounded">
+                        Active
+                      </span>
+
+                    </div>
+
+                  ))}
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        )}
 
         {/* Bar Charts */}
         <div className="grid lg:grid-cols-2 gap-6 mb-6">
