@@ -73,10 +73,11 @@ const companyPieData = [
 ];
 
 const institutePieData = [
-  { name: "Engineering", value: 40 },
-  { name: "Medical", value: 25 },
-  { name: "Management", value: 20 },
-  { name: "Arts", value: 15 }
+  { name: "Maharashtra", value: 35 },
+  { name: "Gujarat", value: 20 },
+  { name: "Karnataka", value: 18 },
+  { name: "Delhi", value: 12 },
+  { name: "Others", value: 15 }
 ];
 
 const COLORS = [
@@ -112,7 +113,7 @@ export default function Dashboard() {
 
         </div>
 
-        {/* KPI */}
+        {/* KPI Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
 
           {kpiData.map((item, i) => {
@@ -155,10 +156,10 @@ export default function Dashboard() {
 
         </div>
 
-        {/* Charts */}
+        {/* Bar Charts */}
         <div className="grid lg:grid-cols-2 gap-6 mb-6">
 
-          {/* Company Bar */}
+          {/* Company Growth */}
           <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
@@ -189,7 +190,7 @@ export default function Dashboard() {
 
           </div>
 
-          {/* Institute Bar */}
+          {/* Institute Growth */}
           <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
@@ -225,75 +226,137 @@ export default function Dashboard() {
         {/* Pie Charts */}
         <div className="grid lg:grid-cols-2 gap-6">
 
-          {/* Company Pie */}
+          {/* Company Distribution */}
           <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-              Company Distribution
+              Company Distribution by State
             </h3>
 
-            <ResponsiveContainer width="100%" height={250}>
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
 
-              <PieChart>
+              <ResponsiveContainer width="60%" height={250}>
 
-                <Pie
-                  data={companyPieData}
-                  dataKey="value"
-                  outerRadius={90}
-                >
+                <PieChart>
 
-                  {companyPieData.map((_, i) => (
+                  <Pie
+                    data={companyPieData}
+                    dataKey="value"
+                    outerRadius={90}
+                  >
 
-                    <Cell
-                      key={i}
-                      fill={COLORS[i % COLORS.length]}
+                    {companyPieData.map((_, i) => (
+
+                      <Cell
+                        key={i}
+                        fill={COLORS[i % COLORS.length]}
+                      />
+
+                    ))}
+
+                  </Pie>
+
+                  <Tooltip />
+
+                </PieChart>
+
+              </ResponsiveContainer>
+
+              {/* Legend */}
+              <div className="space-y-3">
+
+                {companyPieData.map((item, i) => (
+
+                  <div
+                    key={i}
+                    className="flex items-center gap-3"
+                  >
+
+                    <div
+                      className="w-4 h-4 rounded-full"
+                      style={{
+                        backgroundColor: COLORS[i % COLORS.length]
+                      }}
                     />
 
-                  ))}
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {item.name} ({item.value}%)
+                    </p>
 
-                </Pie>
+                  </div>
 
-                <Tooltip />
+                ))}
 
-              </PieChart>
+              </div>
 
-            </ResponsiveContainer>
+            </div>
 
           </div>
 
-          {/* Institute Pie */}
+          {/* Institute Distribution */}
           <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-              Institute Distribution
+              Institute Distribution by State
             </h3>
 
-            <ResponsiveContainer width="100%" height={250}>
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
 
-              <PieChart>
+              <ResponsiveContainer width="60%" height={250}>
 
-                <Pie
-                  data={institutePieData}
-                  dataKey="value"
-                  outerRadius={90}
-                >
+                <PieChart>
 
-                  {institutePieData.map((_, i) => (
+                  <Pie
+                    data={institutePieData}
+                    dataKey="value"
+                    outerRadius={90}
+                  >
 
-                    <Cell
-                      key={i}
-                      fill={COLORS[i % COLORS.length]}
+                    {institutePieData.map((_, i) => (
+
+                      <Cell
+                        key={i}
+                        fill={COLORS[i % COLORS.length]}
+                      />
+
+                    ))}
+
+                  </Pie>
+
+                  <Tooltip />
+
+                </PieChart>
+
+              </ResponsiveContainer>
+
+              {/* Legend */}
+              <div className="space-y-3">
+
+                {institutePieData.map((item, i) => (
+
+                  <div
+                    key={i}
+                    className="flex items-center gap-3"
+                  >
+
+                    <div
+                      className="w-4 h-4 rounded-full"
+                      style={{
+                        backgroundColor: COLORS[i % COLORS.length]
+                      }}
                     />
 
-                  ))}
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {item.name} ({item.value}%)
+                    </p>
 
-                </Pie>
+                  </div>
 
-                <Tooltip />
+                ))}
 
-              </PieChart>
+              </div>
 
-            </ResponsiveContainer>
+            </div>
 
           </div>
 
