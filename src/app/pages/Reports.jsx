@@ -7,21 +7,21 @@ export default function Reports() {
   const [time, setTime] = useState("6months");
 
   return (
-    <div className="min-h-screen bg-[#f8f9fc] p-6">
+    <div className="min-h-screen bg-[#f8f9fc] dark:bg-[#020817] p-6">
       <div className="max-w-4xl mx-auto">
 
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-semibold text-gray-800">Report Generator</h1>
-          <p className="text-gray-500 text-sm">
+          <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">Report Generator</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">
             Generate custom reports for your data
           </p>
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-xl border shadow-sm p-6">
+        <div className="bg-white dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
 
-          <h2 className="text-lg font-semibold text-gray-800 mb-6">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-6">
             Report Configuration
           </h2>
 
@@ -70,7 +70,7 @@ export default function Reports() {
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value)}
-                className="w-full border rounded-lg px-3 py-2 text-sm bg-white"
+                className="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-[#0f172a]"
               >
                 <option value="all">All Regions</option>
                 <option value="Maharashtra">Maharashtra</option>
@@ -89,7 +89,7 @@ export default function Reports() {
               <select
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="w-full border rounded-lg px-3 py-2 text-sm bg-white"
+                className="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm bg-white dark:bg-[#0f172a]"
               >
                 <option value="1month">Last Month</option>
                 <option value="3months">Last 3 Months</option>

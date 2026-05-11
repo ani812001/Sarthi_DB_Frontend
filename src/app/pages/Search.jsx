@@ -13,7 +13,7 @@ export default function SearchPage() {
   const [query, setQuery] = useState("");
 
   return (
-    <div className="min-h-screen bg-[#f8f9fc] flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-[#f8f9fc] dark:bg-[#020817] flex flex-col items-center justify-center px-4">
 
       {/* Badge */}
       <div className="mb-4 px-4 py-1.5 rounded-full bg-violet-100 text-violet-600 text-sm font-medium">
@@ -21,17 +21,17 @@ export default function SearchPage() {
       </div>
 
       {/* Heading */}
-      <h1 className="text-4xl md:text-5xl font-semibold text-gray-800 text-center">
+      <h1 className="text-4xl md:text-5xl font-semibold text-gray-800 dark:text-white text-center">
         Find Anything, Instantly
       </h1>
 
-      <p className="text-gray-500 mt-3 text-center max-w-xl">
+      <p className="text-gray-500 dark:text-gray-400 mt-3 text-center max-w-xl">
         Search through companies and institutes with natural language
       </p>
 
       {/* Search Bar */}
       <div className="w-full max-w-3xl mt-6">
-        <div className="flex items-center bg-white border rounded-xl px-4 py-3 shadow-sm">
+        <div className="flex items-center bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 shadow-sm">
           <Search className="w-5 h-5 text-gray-400 mr-3" />
 
           <input
@@ -39,7 +39,7 @@ export default function SearchPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search like: Top companies in Mumbai or best institutes in Gujarat"
-            className="flex-1 outline-none text-gray-700 text-sm"
+            className="flex-1 outline-none bg-transparent text-gray-700 dark:text-white text-sm"
           />
 
           <button className="ml-3 px-5 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-purple-500 text-white text-sm">
@@ -54,7 +54,7 @@ export default function SearchPage() {
           <button
             key={i}
             onClick={() => setQuery(item)}
-            className="px-4 py-2 rounded-full bg-white border text-sm text-gray-600 hover:bg-gray-50"
+            className="px-4 py-2 rounded-full bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900"
           >
             {item}
           </button>

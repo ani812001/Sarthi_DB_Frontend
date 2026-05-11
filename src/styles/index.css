@@ -1,3 +1,11 @@
-@import './fonts.css';
-@import './tailwind.css';
-@import './theme.css';
+@import "./fonts.css";
+@import "./tailwind.css";
+@import "./theme.css";
+
+html.dark {
+  background-color: #020817;
+}
+
+html.dark body {
+  background-color: #020817;
+}

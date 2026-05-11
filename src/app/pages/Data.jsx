@@ -18,13 +18,13 @@ export default function Data() {
   );
 
   return (
-    <div className="min-h-screen bg-[#f8f9fc] p-6">
+    <div className="min-h-screen bg-[#f8f9fc] dark:bg-[#020817] p-6">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-semibold text-gray-800">Data Management</h1>
-          <p className="text-gray-500 text-sm">
+          <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">Data Management</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">
             Browse and manage your companies and institutes
           </p>
         </div>
@@ -58,21 +58,21 @@ export default function Data() {
 
         {/* Search */}
         <div className="mb-5 max-w-md">
-          <div className="flex items-center bg-white border rounded-lg px-3 py-2">
+          <div className="flex items-center bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2">
             <Search className="w-4 h-4 text-gray-400 mr-2" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search companies..."
-              className="w-full outline-none text-sm"
+              className="w-full outline-none text-sm bg-transparent text-gray-800 dark:text-white"
             />
           </div>
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-xl border shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 text-gray-600">
+            <thead className="bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-300">
               <tr>
                 <th className="text-left px-5 py-3">Name</th>
                 <th className="text-left px-5 py-3">Location</th>
@@ -84,9 +84,9 @@ export default function Data() {
 
             <tbody>
               {filtered.map((item, i) => (
-                <tr key={i} className="border-t hover:bg-gray-50">
-                  <td className="px-5 py-3 font-medium text-gray-800">{item.name}</td>
-                  <td className="px-5 py-3 text-gray-600">{item.location}</td>
+                <tr key={i} className="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+                  <td className="px-5 py-3 font-medium text-gray-800 dark:text-white">{item.name}</td>
+                  <td className="px-5 py-3 text-gray-600 dark:text-gray-300">{item.location}</td>
                   <td className="px-5 py-3 text-gray-600">{item.employees}</td>
                   <td className="px-5 py-3">
                     <span className="px-2 py-1 bg-violet-100 text-violet-600 rounded-full text-xs">

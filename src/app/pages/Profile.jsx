@@ -19,13 +19,13 @@ export default function Profile() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f9fc] p-6">
+    <div className="min-h-screen bg-[#f8f9fc] dark:bg-[#020817] p-6">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-semibold text-gray-800">Profile</h1>
-          <p className="text-gray-500 text-sm">
+          <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">Profile</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">
             Manage your account and preferences
           </p>
         </div>
@@ -33,13 +33,13 @@ export default function Profile() {
         <div className="grid lg:grid-cols-3 gap-6">
 
           {/* LEFT */}
-          <div className="bg-white rounded-xl border shadow-sm p-6 text-center">
+          <div className="bg-white dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 text-center">
 
             <div className="w-20 h-20 mx-auto rounded-xl bg-gradient-to-br from-violet-600 to-purple-500 flex items-center justify-center mb-4">
               <User className="text-white w-10 h-10" />
             </div>
 
-            <h2 className="text-xl font-semibold text-gray-800">{user.name}</h2>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white">{user.name}</h2>
             <p className="text-violet-600 text-sm">{user.role}</p>
 
             <div className="mt-5 space-y-3 text-sm text-gray-600">
@@ -63,7 +63,7 @@ export default function Profile() {
 
             <button
               onClick={logout}
-              className="mt-3 w-full py-2 rounded-lg border text-red-600 text-sm"
+              className="mt-3 w-full py-2 rounded-lg border border-gray-200 dark:border-gray-700 text-red-600 text-sm"
             >
               Logout
             </button>
@@ -79,21 +79,21 @@ export default function Profile() {
                 { label: "Data Uploaded", value: "12.4 GB" },
                 { label: "Searches Performed", value: "328" }
               ].map((item, i) => (
-                <div key={i} className="bg-white rounded-xl border shadow-sm p-4 text-center">
-                  <p className="text-xl font-semibold text-gray-800">{item.value}</p>
-                  <p className="text-sm text-gray-500">{item.label}</p>
+                <div key={i} className="bg-white dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 text-center">
+                  <p className="text-xl font-semibold text-gray-500 dark:text-gray-400">{item.value}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{item.label}</p>
                 </div>
               ))}
             </div>
 
             {/* Preferences */}
-            <div className="bg-white rounded-xl border shadow-sm p-5">
-              <h3 className="font-semibold text-gray-800 mb-4">Preferences</h3>
+            <div className="bg-white dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-5">
+              <h3 className="font-semibold text-gray-500 dark:text-gray-400">Preferences</h3>
 
-              <div className="flex justify-between items-center py-3 border-b">
+              <div className="flex justify-between items-center py-3 border border-gray-200 dark:border-gray-700-b">
                 <div>
                   <p className="text-sm font-medium text-gray-700">Email Notifications</p>
-                  <p className="text-xs text-gray-500">Receive updates via email</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Receive updates via email</p>
                 </div>
                 <input type="checkbox" defaultChecked />
               </div>
@@ -101,15 +101,15 @@ export default function Profile() {
               <div className="flex justify-between items-center py-3">
                 <div>
                   <p className="text-sm font-medium text-gray-700">Two-Factor Authentication</p>
-                  <p className="text-xs text-gray-500">Extra security</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Extra security</p>
                 </div>
                 <input type="checkbox" />
               </div>
             </div>
 
             {/* Activity */}
-            <div className="bg-white rounded-xl border shadow-sm p-5">
-              <h3 className="font-semibold text-gray-800 mb-4">Recent Activity</h3>
+            <div className="bg-white dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-5">
+              <h3 className="font-semibold text-gray-500 dark:text-gray-400 mb-4">Recent Activity</h3>
 
               <ul className="space-y-3 text-sm text-gray-600">
                 <li>Generated Company Report • 2 hours ago</li>
