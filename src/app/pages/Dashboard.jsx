@@ -1,9 +1,14 @@
+import { useState, useEffect } from "react";
+
+import axios from "axios";
+
 import {
   Building,
   GraduationCap,
   Database,
   Activity,
-  Calendar
+  Calendar,
+  X
 } from "lucide-react";
 
 import {
@@ -18,33 +23,6 @@ import {
   Pie,
   Cell
 } from "recharts";
-
-const kpiData = [
-  {
-    label: "Total Companies",
-    value: "2,847",
-    change: "+12.5%",
-    icon: Building
-  },
-  {
-    label: "Total Institutes",
-    value: "1,923",
-    change: "+8.3%",
-    icon: GraduationCap
-  },
-  {
-    label: "Data Uploaded",
-    value: "50.2M",
-    change: "+25.1%",
-    icon: Database
-  },
-  {
-    label: "API Fetch Count",
-    value: "128.5K",
-    change: "+18.7%",
-    icon: Activity
-  }
-];
 
 const companyBarData = [
   { name: "Jan", value: 400 },
@@ -73,10 +51,11 @@ const companyPieData = [
 ];
 
 const institutePieData = [
-  { name: "Engineering", value: 40 },
-  { name: "Medical", value: 25 },
-  { name: "Management", value: 20 },
-  { name: "Arts", value: 15 }
+  { name: "Maharashtra", value: 35 },
+  { name: "Gujarat", value: 20 },
+  { name: "Karnataka", value: 18 },
+  { name: "Delhi", value: 12 },
+  { name: "Others", value: 15 }
 ];
 
 const COLORS = [
@@ -88,6 +67,88 @@ const COLORS = [
 ];
 
 export default function Dashboard() {
+
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const [dashboardData, setDashboardData] = useState({
+    totalCompanies: 0,
+    totalInstitutes: 0,
+    totalUploads: 0,
+    apiFetchCount: 0
+  });
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
+
+  const fetchDashboardData = async () => {
+
+    try {
+
+      const res = await axios.get(
+        "http://localhost:5000/api/dashboard"
+      );
+
+      setDashboardData(res.data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  const kpiData = [
+    {
+      label: "Total Companies",
+      value: dashboardData.totalCompanies,
+      change: "+12.5%",
+      icon: Building,
+      details: [
+        "TCS",
+        "Infosys",
+        "Wipro",
+        "Capgemini",
+        "Accenture"
+      ]
+    },
+    {
+      label: "Total Institutes",
+      value: dashboardData.totalInstitutes,
+      change: "+8.3%",
+      icon: GraduationCap,
+      details: [
+        "IIT Bombay",
+        "VJTI",
+        "COEP",
+        "SPIT",
+        "DY Patil"
+      ]
+    },
+    {
+      label: "Data Uploaded",
+      value: dashboardData.totalUploads,
+      change: "+25.1%",
+      icon: Database,
+      details: [
+        "Student Records",
+        "Placement Data",
+        "Research Data"
+      ]
+    },
+    {
+      label: "API Fetch Count",
+      value: dashboardData.apiFetchCount,
+      change: "+18.7%",
+      icon: Activity,
+      details: [
+        "User API",
+        "Dashboard API",
+        "Analytics API"
+      ]
+    }
+  ];
 
   return (
 
@@ -112,7 +173,7 @@ export default function Dashboard() {
 
         </div>
 
-        {/* KPI */}
+        {/* KPI Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
 
           {kpiData.map((item, i) => {
@@ -123,7 +184,8 @@ export default function Dashboard() {
 
               <div
                 key={i}
-                className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm hover:shadow-md transition cursor-pointer"
+                onClick={() => setSelectedCard(item)}
+                className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm hover:shadow-lg hover:scale-[1.02] transition cursor-pointer"
               >
 
                 <div className="flex justify-between mb-4">
@@ -151,14 +213,79 @@ export default function Dashboard() {
               </div>
 
             );
+
           })}
 
         </div>
 
-        {/* Charts */}
+        {/* Modal */}
+        {selectedCard && (
+
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+
+            <div className="bg-white dark:bg-[#0f172a] rounded-2xl w-full max-w-lg shadow-2xl border border-gray-200 dark:border-gray-800">
+
+              <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 px-6 py-4">
+
+                <div>
+
+                  <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
+                    {selectedCard.label}
+                  </h2>
+
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    Total Count: {selectedCard.value}
+                  </p>
+
+                </div>
+
+                <button
+                  onClick={() => setSelectedCard(null)}
+                  className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1e293b]"
+                >
+
+                  <X className="w-5 h-5 text-gray-500" />
+
+                </button>
+
+              </div>
+
+              <div className="p-6">
+
+                <div className="space-y-3">
+
+                  {selectedCard.details.map((detail, index) => (
+
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-[#020817] border border-gray-100 dark:border-gray-800"
+                    >
+
+                      <span className="text-sm text-gray-700 dark:text-gray-300">
+                        {detail}
+                      </span>
+
+                      <span className="text-xs bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300 px-2 py-1 rounded">
+                        Active
+                      </span>
+
+                    </div>
+
+                  ))}
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        )}
+
+        {/* Bar Charts */}
         <div className="grid lg:grid-cols-2 gap-6 mb-6">
 
-          {/* Company Bar */}
           <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
@@ -189,7 +316,6 @@ export default function Dashboard() {
 
           </div>
 
-          {/* Institute Bar */}
           <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
@@ -222,85 +348,10 @@ export default function Dashboard() {
 
         </div>
 
-        {/* Pie Charts */}
-        <div className="grid lg:grid-cols-2 gap-6">
-
-          {/* Company Pie */}
-          <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
-
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-              Company Distribution
-            </h3>
-
-            <ResponsiveContainer width="100%" height={250}>
-
-              <PieChart>
-
-                <Pie
-                  data={companyPieData}
-                  dataKey="value"
-                  outerRadius={90}
-                >
-
-                  {companyPieData.map((_, i) => (
-
-                    <Cell
-                      key={i}
-                      fill={COLORS[i % COLORS.length]}
-                    />
-
-                  ))}
-
-                </Pie>
-
-                <Tooltip />
-
-              </PieChart>
-
-            </ResponsiveContainer>
-
-          </div>
-
-          {/* Institute Pie */}
-          <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
-
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-              Institute Distribution
-            </h3>
-
-            <ResponsiveContainer width="100%" height={250}>
-
-              <PieChart>
-
-                <Pie
-                  data={institutePieData}
-                  dataKey="value"
-                  outerRadius={90}
-                >
-
-                  {institutePieData.map((_, i) => (
-
-                    <Cell
-                      key={i}
-                      fill={COLORS[i % COLORS.length]}
-                    />
-
-                  ))}
-
-                </Pie>
-
-                <Tooltip />
-
-              </PieChart>
-
-            </ResponsiveContainer>
-
-          </div>
-
-        </div>
-
       </div>
 
     </div>
+
   );
+
 }

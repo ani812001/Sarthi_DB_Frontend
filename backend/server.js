@@ -3,21 +3,19 @@ const cors = require("cors");
 
 const app = express();
 
-/* Middleware */
 app.use(cors());
 app.use(express.json());
 
-/* Routes */
 const authRoutes = require("./routes/authRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const companyRoutes = require("./routes/companyRoutes");
+const instituteRoutes = require("./routes/instituteRoutes");
 
 app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/company", companyRoutes);
+app.use("/api/institute", instituteRoutes);
 
-/* Test */
-app.get("/", (req, res) => {
-  res.send("Backend Running");
-});
-
-/* Server */
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
