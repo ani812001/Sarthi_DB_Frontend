@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 
 import axios from "axios";
+=======
+import { useState } from "react";
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
 
 import {
   Building,
@@ -24,6 +28,68 @@ import {
   Cell
 } from "recharts";
 
+<<<<<<< HEAD
+=======
+const kpiData = [
+  {
+    label: "Total Companies",
+    value: "2,847",
+    change: "+12.5%",
+    icon: Building,
+    details: [
+      "TCS",
+      "Infosys",
+      "Wipro",
+      "Capgemini",
+      "Accenture",
+      "Tech Mahindra"
+    ]
+  },
+  {
+    label: "Total Institutes",
+    value: "1,923",
+    change: "+8.3%",
+    icon: GraduationCap,
+    details: [
+      "IIT Bombay",
+      "VJTI",
+      "COEP",
+      "SPIT",
+      "DY Patil",
+      "NMIMS"
+    ]
+  },
+  {
+    label: "Data Uploaded",
+    value: "50.2M",
+    change: "+25.1%",
+    icon: Database,
+    details: [
+      "Student Records",
+      "Company Records",
+      "Placement Data",
+      "Attendance Data",
+      "Faculty Data",
+      "Research Data"
+    ]
+  },
+  {
+    label: "API Fetch Count",
+    value: "128.5K",
+    change: "+18.7%",
+    icon: Activity,
+    details: [
+      "User API",
+      "Company API",
+      "Institute API",
+      "Reports API",
+      "Dashboard API",
+      "Analytics API"
+    ]
+  }
+];
+
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
 const companyBarData = [
   { name: "Jan", value: 400 },
   { name: "Feb", value: 300 },
@@ -70,6 +136,7 @@ export default function Dashboard() {
 
   const [selectedCard, setSelectedCard] = useState(null);
 
+<<<<<<< HEAD
   const [dashboardData, setDashboardData] = useState({
     totalCompanies: 0,
     totalInstitutes: 0,
@@ -150,6 +217,8 @@ export default function Dashboard() {
     }
   ];
 
+=======
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
   return (
 
     <div className="min-h-screen bg-[#f8f9fc] dark:bg-[#020817] p-6">
@@ -218,13 +287,21 @@ export default function Dashboard() {
 
         </div>
 
+<<<<<<< HEAD
         {/* Modal */}
+=======
+        {/* Popup Modal */}
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
         {selectedCard && (
 
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
 
             <div className="bg-white dark:bg-[#0f172a] rounded-2xl w-full max-w-lg shadow-2xl border border-gray-200 dark:border-gray-800">
 
+<<<<<<< HEAD
+=======
+              {/* Header */}
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
               <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 px-6 py-4">
 
                 <div>
@@ -241,7 +318,11 @@ export default function Dashboard() {
 
                 <button
                   onClick={() => setSelectedCard(null)}
+<<<<<<< HEAD
                   className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1e293b]"
+=======
+                  className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1e293b] transition"
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
                 >
 
                   <X className="w-5 h-5 text-gray-500" />
@@ -250,8 +331,18 @@ export default function Dashboard() {
 
               </div>
 
+<<<<<<< HEAD
               <div className="p-6">
 
+=======
+              {/* Body */}
+              <div className="p-6">
+
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-4">
+                  Related Data
+                </h3>
+
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
                 <div className="space-y-3">
 
                   {selectedCard.details.map((detail, index) => (
@@ -286,6 +377,10 @@ export default function Dashboard() {
         {/* Bar Charts */}
         <div className="grid lg:grid-cols-2 gap-6 mb-6">
 
+<<<<<<< HEAD
+=======
+          {/* Company Growth */}
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
           <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
@@ -316,6 +411,10 @@ export default function Dashboard() {
 
           </div>
 
+<<<<<<< HEAD
+=======
+          {/* Institute Growth */}
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
           <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
@@ -348,6 +447,148 @@ export default function Dashboard() {
 
         </div>
 
+<<<<<<< HEAD
+=======
+        {/* Pie Charts */}
+        <div className="grid lg:grid-cols-2 gap-6">
+
+          {/* Company Distribution */}
+          <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
+
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+              Company Distribution by State
+            </h3>
+
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+
+              <ResponsiveContainer width="60%" height={250}>
+
+                <PieChart>
+
+                  <Pie
+                    data={companyPieData}
+                    dataKey="value"
+                    outerRadius={90}
+                  >
+
+                    {companyPieData.map((_, i) => (
+
+                      <Cell
+                        key={i}
+                        fill={COLORS[i % COLORS.length]}
+                      />
+
+                    ))}
+
+                  </Pie>
+
+                  <Tooltip />
+
+                </PieChart>
+
+              </ResponsiveContainer>
+
+              {/* Legend */}
+              <div className="space-y-3">
+
+                {companyPieData.map((item, i) => (
+
+                  <div
+                    key={i}
+                    className="flex items-center gap-3"
+                  >
+
+                    <div
+                      className="w-4 h-4 rounded-full"
+                      style={{
+                        backgroundColor: COLORS[i % COLORS.length]
+                      }}
+                    />
+
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {item.name} ({item.value}%)
+                    </p>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Institute Distribution */}
+          <div className="bg-white dark:bg-[#0f172a] border border-gray-200 dark:border-gray-800 rounded-xl p-5 shadow-sm">
+
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+              Institute Distribution by State
+            </h3>
+
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+
+              <ResponsiveContainer width="60%" height={250}>
+
+                <PieChart>
+
+                  <Pie
+                    data={institutePieData}
+                    dataKey="value"
+                    outerRadius={90}
+                  >
+
+                    {institutePieData.map((_, i) => (
+
+                      <Cell
+                        key={i}
+                        fill={COLORS[i % COLORS.length]}
+                      />
+
+                    ))}
+
+                  </Pie>
+
+                  <Tooltip />
+
+                </PieChart>
+
+              </ResponsiveContainer>
+
+              {/* Legend */}
+              <div className="space-y-3">
+
+                {institutePieData.map((item, i) => (
+
+                  <div
+                    key={i}
+                    className="flex items-center gap-3"
+                  >
+
+                    <div
+                      className="w-4 h-4 rounded-full"
+                      style={{
+                        backgroundColor: COLORS[i % COLORS.length]
+                      }}
+                    />
+
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {item.name} ({item.value}%)
+                    </p>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+>>>>>>> ddc605c7726c7b23754ddb69ef0d67f8db79eace
       </div>
 
     </div>
